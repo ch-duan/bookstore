@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>图书管理</title>
+		<link type="text/css" rel="stylesheet" href="/static/css/style.css">
+	</head>
+
+	<body>
+
+		<div id="header">
+			<!-- <img class="logo_img" alt="" src="/static/img/logo.gif" > -->
+			<span class="wel_word">图书管理系统</span>
+			<div>
+				<a href="/manager/bookManager">图书管理</a>
+				<a href="/manager">返回</a>
+			</div>
+		</div>
+
+		<div id="main">
+			<table>
+				<tr>
+					<td>名称</td>
+					<td>价格</td>
+					<td>作者</td>
+					<td>销量</td>
+					<td>库存</td>
+					<td colspan="2">操作</td>
+				</tr>
+
+				{{range .Data}}
+				<tr>
+					<td>{{.Title}}</td>
+					<td>{{.Price}}</td>
+					<td>{{.Author}}</td>
+					<td>{{.Sales}}</td>
+					<td>{{.Stock}}</td>
+					<td><a href="/manager/updateBook?bookID={{.ID}}">修改</a></td>
+					<td><a href="/manager/deleteBook?bookID={{.ID}}">删除</a></td>
+				</tr>
+				{{end}}
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td><a href="/upDateBook">添加图书</a></td>
+				</tr>
+			</table>
+		</div>
+
+		<div id="bottom">
+			<span>
+				书城.Copyright &copy;2020
+			</span>
+		</div>
+	</body>
+
+</html>
