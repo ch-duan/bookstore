@@ -10,5 +10,5 @@ import (
 func Session(key string) gin.HandlerFunc {
 	store := cookie.NewStore([]byte(key))
 	store.Options(sessions.Options{HttpOnly: true, MaxAge: 3600, Path: "/"})
-	return sessions.Sessions("gin-session", store)
+	return sessions.Sessions("my-session", store)
 }

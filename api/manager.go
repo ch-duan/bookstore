@@ -21,6 +21,8 @@ func Manager(c *gin.Context) {
 	})
 }
 
+/*图书管理*/
+
 //BookManager 后台图书管理
 func BookManager(c *gin.Context) {
 	books, err := model.GetBooks()
@@ -35,7 +37,6 @@ func BookManager(c *gin.Context) {
 func UpdateOrAddBook(c *gin.Context) {
 	book := &model.Book{}
 	c.ShouldBind(book)
-	log.Println("test:", book)
 	file, err := c.FormFile("newImgPath")
 	if err != nil {
 		log.Println("UpdateOrAddBook:图片上传失败", err)
@@ -77,4 +78,25 @@ func DeleteBook(c *gin.Context) {
 	err := model.DeleteBookByID(ID)
 	log.Println("DeleteBook", err)
 	c.Redirect(http.StatusMovedPermanently, "/manager/bookManager")
+}
+
+/*订单管理*/
+
+//OrderManager 订单管理
+func OrderManager(c *gin.Context) {
+	orders, _ := model.QueryAllOrder()
+	c.HTML(http.StatusOK, "order_manager.html", serializer.Response{
+		Data: struct {
+			Orders []*model.Order
+		}{
+			Orders: orders,
+		},
+	})
+}
+
+//SendOrder 发货
+func SendOrder(c *gin.Context) {
+	orderID := c.Query("orderID")
+	model.UpdateOrderstatus(orderID, 1)
+	OrderManager(c)
 }

@@ -12,7 +12,7 @@
 			<img class="logo_img" alt="" src="/static/img/logo.gif">
 			<span class="wel_word">订单管理系统</span>
 			<div>
-				<a href="/orderManager">订单管理</a>
+				<a href="/manager/orderManager">订单管理</a>
 				<a href="/manager">返回</a>
 			</div>
 		</div>
@@ -27,16 +27,16 @@
 					<th>详情</th>
 					<th>发货</th>
 				</tr>
-				{{range .}}
+				{{range .Data.Orders}}
 				<tr>
 					<td>{{.ID}}</td>
 					<td>{{.GetTime}}</td>
 					<td>{{.TotalCount}}</td>
 					<td>{{.TotalAmount}}</td>
-					<td><a href="/getOrderInfo?orderID={{.ID}}">查看详情</a></td>
+					<td><a href="/manager/getOrderInfo?orderID={{.ID}}">查看详情</a></td>
 					<td class="state">
 						{{if .NoSend}}
-						<a href="/sendOrder?orderID={{.ID}}">发货</a>
+						<a href="/manager/sendOrder?orderID={{.ID}}">发货</a>
 						{{end}}
 						{{if .SendComplate}}
 						等待确认收货

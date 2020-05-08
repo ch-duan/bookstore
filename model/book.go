@@ -14,26 +14,20 @@ type Book struct {
 	Stock          int     `form:"stock"`  //库存
 	Classification string  //分类
 	Publisher      string  //出版商
-	ImgPath        string  `gorm:"column:imgpath"` //图书图片路径
+	ImgPath        string  `form:"imgpath" gorm:"column:imgpath"` //图书图片路径
 	Ebook          bool    //是否电子书
 }
 
 //AddBook 添加图书
 func (book *Book) AddBook() error {
 	err := utils.Db.Create(&book).Error
-	if err != nil {
-		return err
-	}
-	return nil
+	return err
 }
 
 //UpdateBook 更新图书
 func (book *Book) UpdateBook() error {
-	err := utils.Db.Save(&book)
-	if err != nil {
-		return nil
-	}
-	return nil
+	err := utils.Db.Save(&book).Error
+	return err
 }
 
 //DeleteBookByID 通过ID删除图书

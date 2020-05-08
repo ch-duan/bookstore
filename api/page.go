@@ -20,6 +20,7 @@ func Home(c *gin.Context) {
 	} else {
 		pageNum, _ = strconv.ParseInt(c.Query("pageNum"), 10, 0)
 	}
+	//搜索
 	search := c.PostForm("search")
 	page, err := service.QueryBooks(search, int(pageNum), 4)
 	if user != nil {
@@ -36,9 +37,4 @@ func Home(c *gin.Context) {
 			Data:   page,
 		})
 	}
-}
-
-//Search 搜索图书
-func Search(c *gin.Context) {
-
 }

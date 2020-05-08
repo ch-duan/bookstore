@@ -39,6 +39,33 @@ func NewRouter() *gin.Engine {
 		user.GET("/logout", middleware.AuthUserRequired(), func(c *gin.Context) {
 			api.Logout(c, "userID")
 		})
+		user.GET("/addCart", middleware.AuthUserRequired(), func(c *gin.Context) {
+			api.AddCart(c)
+		})
+		user.GET("/cart", middleware.AuthUserRequired(), func(c *gin.Context) {
+			api.Cart(c)
+		})
+		user.POST("/updateCartItem", middleware.AuthUserRequired(), func(c *gin.Context) {
+			api.UpdateCartItem(c)
+		})
+		user.GET("/deleteCartItem", middleware.AuthUserRequired(), func(c *gin.Context) {
+			api.DeleteCartItem(c)
+		})
+		user.GET("/deleteCart", middleware.AuthUserRequired(), func(c *gin.Context) {
+			api.DeleteCart(c)
+		})
+		user.GET("/checkout", middleware.AuthUserRequired(), func(c *gin.Context) {
+			api.Checkout(c)
+		})
+		user.GET("/order", middleware.AuthUserRequired(), func(c *gin.Context) {
+			api.Order(c)
+		})
+		user.GET("/getOrderInfo", middleware.AuthUserRequired(), func(c *gin.Context) {
+			api.GetOrderInfo(c)
+		})
+		user.GET("/takeOrder", middleware.AuthUserRequired(), func(c *gin.Context) {
+			api.TakeOrder(c)
+		})
 	}
 
 	//后台管理
@@ -56,6 +83,8 @@ func NewRouter() *gin.Engine {
 			auth.POST("/updateOrAddBook", api.UpdateOrAddBook)
 			auth.GET("/updateBook", api.UpdateBook)
 			auth.GET("/deleteBook", api.DeleteBook)
+			auth.GET("/orderManager", api.OrderManager)
+			auth.GET("/sendOrder", api.SendOrder)
 		}
 	}
 	r.NoRoute(func(c *gin.Context) {

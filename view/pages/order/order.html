@@ -18,8 +18,8 @@
 		<div id="header">
 			<span class="wel_word">我的订单</span>
 			<div>
-				<span>欢迎<span class="um_span">{{.Username}}</span>光临书城</span>
-				<a href="/queryMyOrderHandler">我的订单</a>
+				<span>欢迎<span class="um_span">{{.Data.User.Username}}</span>光临书城</span>
+				<a href="/user/order">我的订单</a>
 				<a href="/user/logout">注销</a>&nbsp;&nbsp;
 				<a href="/">返回</a>
 			</div>
@@ -35,16 +35,16 @@
 					<th>详情</th>
 					<th>发货</th>
 				</tr>
-				{{range .Orders}}
+				{{range .Data.Orders}}
 				<tr>
 					<td>{{.ID}}</td>
 					<td>{{.GetTime}}</td>
 					<td>{{.TotalCount}}</td>
 					<td>{{.TotalAmount}}</td>
-					<td><a href="/getOrderInfo?orderID={{.ID}}">查看详情</a></td>
+					<td><a href="/user/getOrderInfo?orderID={{.ID}}">查看详情</a></td>
 					<td class="state">
 						{{if .SendComplate}}
-						<a href="/takeOrder?orderID={{.ID}}">确认收货</a>
+						<a href="/user/takeOrder?orderID={{.ID}}">确认收货</a>
 						{{end}}
 						{{if .NoSend}}
 						等待发货

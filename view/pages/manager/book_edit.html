@@ -50,6 +50,7 @@
 						<td><input name="author" type="text" value="{{ .Data.Author }}" /></td>
 						<td><input name="sales" type="text" value="{{ .Data.Sales }}" /></td>
 						<td><input name="stock" type="text" value="{{ .Data.Stock }}" /></td>
+						<input name="imgpath" type="hidden" value="{{ .Data.ImgPath }}" />
 						<img class="book_img" name="oldImgPath" alt="" src={{.Data.ImgPath}} />
 						<td><input name="newImgPath" type="file" value="请上传图片" /></td>
 						{{else}}
