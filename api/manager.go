@@ -33,6 +33,11 @@ func BookManager(c *gin.Context) {
 	}
 }
 
+//AddBook 添加图书
+func AddBook(c *gin.Context) {
+	c.HTML(http.StatusOK, "book_edit.html", serializer.Response{})
+}
+
 //UpdateOrAddBook 更新或修改图书
 func UpdateOrAddBook(c *gin.Context) {
 	book := &model.Book{}

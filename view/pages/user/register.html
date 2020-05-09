@@ -58,7 +58,7 @@
 				});
 				$("#username").change(function () {
 					var username = $(this).val();
-					var url = "/user/checkUsername";
+					var url = "/refactor/user/checkUsername";
 					var param = { "username": username };
 					$.post(url, param, function (res) {
 						$("#msg").show();
@@ -92,7 +92,7 @@
 							<span class="errorMsg" id="msg">{{.Msg}}</span>
 						</div>
 						<div class="form">
-							<form action="/user/register" method="POST">
+							<form action="/refactor/user/register" method="POST">
 								<label>用户名称：</label>
 								<input class="itxt" type="text" placeholder="请输入用户名" autocomplete="off" tabindex="1"
 									name="username" id="username" />
@@ -128,7 +128,7 @@
 		</div>
 		<div id="bottom">
 			<span>
-				书城.Copyright &copy;2020
+				书城.Copyright &copy;2020.<a href="http://www.beian.miit.gov.cn/">鄂ICP备20002228号</a>
 			</span>
 		</div>
 	</body>

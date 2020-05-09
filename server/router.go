@@ -19,10 +19,10 @@ func NewRouter() *gin.Engine {
 
 	r.Static("static", "./view/static")
 	r.LoadHTMLGlob("view/pages/**/*")
-	r.GET("/", api.Home)
+	r.GET("/refactor", api.Home)
 	r.POST("/", api.Home)
 	//用户
-	user := r.Group("/user")
+	user := r.Group("/refactor/user")
 	{
 		user.GET("/login", func(c *gin.Context) {
 			c.HTML(http.StatusOK, "login.html", nil)
@@ -69,7 +69,7 @@ func NewRouter() *gin.Engine {
 	}
 
 	//后台管理
-	manager := r.Group("/manager")
+	manager := r.Group("/refactor/manager")
 	{
 		manager.POST("/login", api.RootLogin)
 		auth := manager.Group("")
@@ -81,6 +81,7 @@ func NewRouter() *gin.Engine {
 			})
 			auth.GET("/bookManager", api.BookManager)
 			auth.POST("/updateOrAddBook", api.UpdateOrAddBook)
+			auth.GET("/addBook", api.AddBook)
 			auth.GET("/updateBook", api.UpdateBook)
 			auth.GET("/deleteBook", api.DeleteBook)
 			auth.GET("/orderManager", api.OrderManager)
